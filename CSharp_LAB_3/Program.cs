@@ -7,7 +7,7 @@ namespace CSharp_LAB_3
     {
         public static void Main(string[] args)
         {
-            Task907();
+            Task914();
         }
         
         /// <summary>
@@ -83,6 +83,40 @@ namespace CSharp_LAB_3
 
             Console.Write("\nSum: " + sum);
             
+        }
+
+        /// <summary>
+        ///     914. Найти номер столбца Двумерного массива целых чисел,
+        ///          для которого среднеарифметическое значение его элементов максимально.
+        /// </summary>
+        static void Task914()
+        {
+            int[,] matrix = GenerateRandomMatrix(3,3,-100, 100);
+
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+            double maxAverage = double.MinValue;//самое маленькое значение для типа double, чтобы кореккно работать с отрицательными среднеарифметическими значениями столбцов масива
+            int maxAverageColumn = -1;
+
+            for (int j = 0; j < cols; j++)
+            {
+                double columnSum = 0;
+
+                for (int i = 0; i < rows; i++)
+                {
+                    columnSum += matrix[i, j];
+                }
+
+                double columnAverage = columnSum / rows;
+
+                if (columnAverage > maxAverage)
+                {
+                    maxAverage = columnAverage;
+                    maxAverageColumn = j;
+                }
+            }
+
+            Console.WriteLine("Column number(index) with maximum arithmetic mean: " + maxAverageColumn);
         }
     }
 }
