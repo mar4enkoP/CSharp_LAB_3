@@ -7,7 +7,7 @@ namespace CSharp_LAB_3
     {
         public static void Main(string[] args)
         {
-            Task933();
+            Task970();
         }
 
         /// <summary>
@@ -65,8 +65,8 @@ namespace CSharp_LAB_3
         {
             int[,] matrix = GenerateRandomMatrix();
 
-            int rows = matrix.GetLength(0);
-            int cols = matrix.GetLength(1);
+            int rows = matrix.GetLength(0);//возвращает количество строк
+            int cols = matrix.GetLength(1);//возвращает количество столбцов
             int sum = 0;
 
             Console.Write("Element on the parallel main diagonal line and below:");
@@ -97,9 +97,7 @@ namespace CSharp_LAB_3
 
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
-            double
-                maxAverage =
-                    double.MinValue; //самое маленькое значение для типа double, чтобы кореккно работать с отрицательными среднеарифметическими значениями столбцов масива
+            double maxAverage = double.MinValue; //самое маленькое значение для типа double, чтобы кореккно работать с отрицательными среднеарифметическими значениями столбцов масива
             int maxAverageColumn = -1;
 
             for (int j = 0; j < cols; j++)
@@ -140,15 +138,15 @@ namespace CSharp_LAB_3
                 {
                     int[] columnToSort = new int[rows];
                     
-                    for (int i = 0; i < rows; i++)
+                    for (int i = 0; i < rows; i++)  // Копирование столбец в массив для дальнейшей сортировки
                     {
                         columnToSort[i] = matrix[i, j];
                     }
                     
-                    Array.Sort(columnToSort);
+                    Array.Sort(columnToSort); //сортировкf
 
-                    // Заменяем значения в столбце отсортированными значениями
-                    for (int i = 0; i < rows; i++)
+                    
+                    for (int i = 0; i < rows; i++) // Заменяем значения в столбце отсортированными значениями
                     {
                         matrix[i, j] = columnToSort[i];
                     }
@@ -166,7 +164,27 @@ namespace CSharp_LAB_3
                 Console.WriteLine();
             }
         }
-        
-        
+
+        /// <summary>
+        ///     970. В Двумерном массиве хранится информация о зарплате 18 человек за каждый месяц года
+        ///          (в первом столбце — зарплата за январь, во втором — за февраль и т. д.).
+        ///          Составить программу для расчета средней зарплаты за любой месяц.
+        /// </summary>
+        static void Task970()
+        {
+            int[,] salaryData = GenerateRandomMatrix(18,12,1000,4000);// 18 человек, 12 месяцев
+
+            int totalSalaries = 0;
+            int monthIndex = 2; // (0 - янврь, 1 - февраль...)
+
+            for (int i = 0; i < salaryData.GetLength(0); i++)
+            {
+                totalSalaries += salaryData[i, monthIndex];
+            }
+
+            double averageSalary = (double)totalSalaries / salaryData.GetLength(0);
+
+            Console.WriteLine("Average monthly salary: " + averageSalary);
+        }
     }
 }
