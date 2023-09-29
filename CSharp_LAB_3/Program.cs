@@ -7,9 +7,9 @@ namespace CSharp_LAB_3
     {
         public static void Main(string[] args)
         {
-            Task914();
+            Task933();
         }
-        
+
         /// <summary>
         /// Генерирует случайный двумерный массив целых чисел в указанном диапазоне
         /// </summary>
@@ -49,12 +49,14 @@ namespace CSharp_LAB_3
                 {
                     Console.Write(matrix[i, j] + "\t");
                 }
+
                 Console.WriteLine();
             }
+
             Console.ResetColor();
             return matrix;
         }
-        
+
         /// <summary>
         ///     907. Найти суммы элементов Двумерного массива целых чисел, расположенных на линиях,
         ///          параллельных главной диагонали, и ниже нее.
@@ -66,7 +68,7 @@ namespace CSharp_LAB_3
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
             int sum = 0;
-            
+
             Console.Write("Element on the parallel main diagonal line and below:");
             for (int i = 0; i < rows; i++)
             {
@@ -77,12 +79,12 @@ namespace CSharp_LAB_3
                     {
                         sum += matrix[i, j];
                         Console.Write("  " + matrix[i, j]);
-                    } 
+                    }
                 }
             }
 
             Console.Write("\nSum: " + sum);
-            
+
         }
 
         /// <summary>
@@ -91,11 +93,13 @@ namespace CSharp_LAB_3
         /// </summary>
         static void Task914()
         {
-            int[,] matrix = GenerateRandomMatrix(3,3,-100, 100);
+            int[,] matrix = GenerateRandomMatrix(3, 3, -100, 100);
 
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
-            double maxAverage = double.MinValue;//самое маленькое значение для типа double, чтобы кореккно работать с отрицательными среднеарифметическими значениями столбцов масива
+            double
+                maxAverage =
+                    double.MinValue; //самое маленькое значение для типа double, чтобы кореккно работать с отрицательными среднеарифметическими значениями столбцов масива
             int maxAverageColumn = -1;
 
             for (int j = 0; j < cols; j++)
@@ -118,5 +122,51 @@ namespace CSharp_LAB_3
 
             Console.WriteLine("Column number(index) with maximum arithmetic mean: " + maxAverageColumn);
         }
+
+        /// <summary>
+        ///     933. Отсортировать нечетные столбцы массива по возрастанию.
+        /// </summary>
+        static void Task933()
+        {
+            int[,] matrix = GenerateRandomMatrix(10, 10);
+
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+
+            for (int j = 0; j < cols; j++)
+            {
+               
+                if (j % 2 != 0) // Проверяка нечетности
+                {
+                    int[] columnToSort = new int[rows];
+                    
+                    for (int i = 0; i < rows; i++)
+                    {
+                        columnToSort[i] = matrix[i, j];
+                    }
+                    
+                    Array.Sort(columnToSort);
+
+                    // Заменяем значения в столбце отсортированными значениями
+                    for (int i = 0; i < rows; i++)
+                    {
+                        matrix[i, j] = columnToSort[i];
+                    }
+                }
+            }
+            
+            Console.WriteLine("Sorted array by odd columns:");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    Console.Write(matrix[i, j] + "\t");
+                }
+
+                Console.WriteLine();
+            }
+        }
+        
+        
     }
 }
