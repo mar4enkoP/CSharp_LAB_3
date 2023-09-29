@@ -7,7 +7,26 @@ namespace CSharp_LAB_3
     {
         public static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nTask: 907");
+            Console.ResetColor();
+            Task907();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nTask: 914");
+            Console.ResetColor();
+            Task914();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nTask: 933");
+            Console.ResetColor();
+            Task933();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nTask: 970");
+            Console.ResetColor();
             Task970();
+
         }
 
         /// <summary>
@@ -82,12 +101,12 @@ namespace CSharp_LAB_3
                     }
                 }
             }
-
+            
             Console.Write("\nSum: " + sum);
-
         }
 
         /// <summary>
+        ///     [Задание дублируеться] 
         ///     914. Найти номер столбца Двумерного массива целых чисел,
         ///          для которого среднеарифметическое значение его элементов максимально.
         /// </summary>
@@ -117,7 +136,7 @@ namespace CSharp_LAB_3
                     maxAverageColumn = j;
                 }
             }
-
+            
             Console.WriteLine("Column number(index) with maximum arithmetic mean: " + maxAverageColumn);
         }
 
